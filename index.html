@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Adel Atef Emam | My Daily Work Plan</title>
+<link rel="icon" type="image/png" href="logo.png">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{box-sizing:border-box;color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#0a0405;--card:rgba(10,4,5,.55);--tx:#f3e9ea;--mu:#b39a9d;--bd:rgba(255,255,255,.12);--ac:#ff5a6e;--acb:#9b1c2e;--acs:rgba(255,90,110,.16);--wn:#ffb36b;--wns:rgba(255,179,107,.16)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%;background:#0a0405}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 0% 0%,#0a0405,#3d0b12,#0a0405) fixed;color:var(--tx);font-family:"Segoe UI",Tahoma,"Noto Sans Arabic",Arial,sans-serif;line-height:1.6}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;justify-content:center;align-items:center;padding:12px 16px;background:linear-gradient(90deg,#0b0506,#150709 60%,#1d0a0d);border-bottom:1px solid var(--bd)}
+.logo{display:block;height:44px;max-width:60%;margin:0}
+.w{width:100%;max-width:none;padding:16px 24px}
+.tabs{display:flex;justify-content:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tabs button,.b{font:inherit;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:7px 16px;border-radius:8px;cursor:pointer}
+.tabs button.on,.b.p{background:var(--acb);color:#fff;border-color:var(--ac)}
+.card{backdrop-filter:blur(6px);background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input,select{font:inherit;color:var(--tx);background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:8px;padding:7px 10px;min-width:0}
+select option{background:#1a0a0d;color:var(--tx)}
+input[type=number]{width:90px}
+input[type=checkbox]{accent-color:#ff5a6e}
+input[type=date]{color-scheme:dark}
+.frm{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:8px;margin-top:10px}
+.mu{color:var(--mu);font-size:13px}
+.bar{height:6px;background:var(--bd);border-radius:4px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;background:var(--ac)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:12px}
+.day{border:1px solid var(--bd);border-radius:10px;padding:10px;background:rgba(255,255,255,.03)}
+.day.cur{border-color:var(--ac)}
+.day h4{margin:0 0 6px;font-size:14px}
+.t{display:flex;gap:8px;align-items:flex-start;padding:3px 0}
+.t input{margin-top:6px;flex:none}
+.t.done span{text-decoration:line-through;color:var(--mu)}
+.t span{flex:1}
+.x{border:0;background:none;color:var(--mu);cursor:pointer;font-size:16px}
+.tag{font-size:12px;padding:1px 8px;border-radius:10px;background:var(--acs);color:var(--ac);white-space:nowrap}
+.tag.l{background:var(--wns);color:var(--wn)}
+.hd{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.hd strong{font-size:16px}
+.add{margin-top:8px}.add input{flex:1}
+#lock{display:none}
+body.locked .top,body.locked .w{display:none}
+body.locked #lock{display:flex;height:100vh;height:100dvh;align-items:center;justify-content:center;padding:12px;overflow:hidden}
+html:has(body.locked),body.locked{overflow:hidden}
+.lc{width:min(427px,100%);padding:28px 30px 26px;border-radius:22px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(135deg,rgba(90,22,32,.7),rgba(18,7,9,.88));text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lc img{height:64px;max-width:75%;margin-bottom:12px}
+.lc h2{margin:0 0 4px;font-size:18px}
+.lc p{margin:0 0 18px;color:var(--mu);font-size:12.5px}
+.lc input{width:100%;padding:13px 16px;border-radius:14px;text-align:center;font-size:15px;margin-bottom:10px;background:rgba(0,0,0,.35)}
+.lc button{width:100%;padding:12px;border:0;border-radius:14px;background:#e0374d;color:#fff;font:inherit;font-size:15px;cursor:pointer}
+#pe{color:#ff8a98;font-size:13px;min-height:16px;margin-top:6px}
+html,body{overflow-x:hidden}
+@media(max-width:600px){
+.w{padding:12px}
+.card{padding:12px}
+.tabs button,.b{padding:6px 12px;font-size:14px}
+.logo{height:36px}
+.lc{padding:22px 18px 20px;border-radius:20px}
+.lc img{height:48px;margin-bottom:10px}
+.lc p{margin-bottom:14px}
+.lc input{padding:11px;margin-bottom:8px}
+.lc button{padding:11px}
+}
+</style>
+</head>
+<body class="locked">
+<div id="lock"><div class="lc"><img id="lg2" alt="Adel Atef Emam"><h2>🔒 تسجيل الدخول</h2><p>ادخل الإيميل وكلمة المرور لفتح خطة الشغل</p><input id="em" type="email" placeholder="الإيميل" autocomplete="username"><input id="pw" type="password" placeholder="كلمة المرور" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()"><button onclick="login()">دخول</button><div id="pe"></div></div></div>
+<header class="top"><img class="logo" alt="Adel Atef Emam" src="logo.png"></header>
+<div class="w">
+<div class="tabs"><button id="tt" onclick="go('today')">شغل النهاردة</button><button id="tc" onclick="go('clients')">العملاء</button><button onclick="logout()">خروج</button></div>
+<div id="app"></div>
+</div>
+<script>
+// ===== الصق بيانات مشروع خطة الشغل هنا (Project Settings > API) =====
+var SB_URL='https://kdjpayloixkmlakvizir.supabase.co';
+var SB_KEY='sb_publishable_3vccQC8IaOcXnbxYbQJgIQ_SBqZMsjb'; // publishable فقط، ممنوع secret / service_role
+// ====================================================================
+var sb=supabase.createClient(SB_URL,SB_KEY);
+var SV=['بناء كامل من الصفر','إعادة تصميم','تطوير'];
+var S={clients:[],tab:'today',open:{},focus:null,msg:''};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function wk(d){return d.getDay()==5}
+function dayNo(c){var t=new Date();t.setHours(0,0,0,0);var d=new Date(c.start+'T00:00:00'),n=0;while(d<=t){if(!wk(d))n++;d.setDate(d.getDate()+1)}return n}
+function dateOf(c,k){var d=new Date(c.start+'T00:00:00'),n=0;while(true){if(!wk(d)){n++;if(n==k)return d}d.setDate(d.getDate()+1)}}
+function fmt(d){return d.toLocaleDateString('ar-EG',{weekday:'short',day:'numeric',month:'short'})}
+function cl(id){return S.clients.find(function(x){return x.id==id})}
+function go(t){S.tab=t;render()}
+
+// ---------- قاعدة البيانات ----------
+function w(p){p.then(function(r){if(r.error){S.msg='فشل الحفظ: '+r.error.message;load()}})}
+async function load(){
+  var a=await sb.from('planner_clients').select('*').order('created_at');
+  var b=await sb.from('planner_tasks').select('*').order('created_at');
+  if(a.error||b.error){S.msg='تعذّر تحميل البيانات: '+(a.error||b.error).message;render();return}
+  S.clients=a.data.map(function(c){
+    return{id:c.id,name:c.name,store:c.store,svc:c.svc,days:c.days,start:c.start_date,
+      tasks:b.data.filter(function(t){return t.client_id==c.id}).map(function(t){return{id:t.id,t:t.t,d:t.d,done:t.done}})};
+  });
+  render();
+}
+function addClient(){
+  var g=function(i){return document.getElementById(i).value.trim()};
+  var n=g('cn'),st=g('cst'),sv=g('csv'),d=parseInt(g('cd'),10),s=g('cs');
+  if(!n||!st||!sv||!d||d<1||!s){S.msg='كمّل كل بيانات العميل.';render();return}
+  var c={id:crypto.randomUUID(),name:n,store:st,svc:sv,days:d,start:s,tasks:[]};
+  S.clients.push(c);S.open[c.id]=true;S.tab='clients';S.msg='';render();
+  w(sb.from('planner_clients').insert({id:c.id,name:n,store:st,svc:sv,days:d,start_date:s}));
+}
+function tog(cid,tid){
+  var t=cl(cid).tasks.find(function(x){return x.id==tid});t.done=!t.done;render();
+  w(sb.from('planner_tasks').update({done:t.done}).eq('id',tid));
+}
+function delTask(cid,tid){
+  var c=cl(cid);c.tasks=c.tasks.filter(function(x){return x.id!=tid});render();
+  w(sb.from('planner_tasks').delete().eq('id',tid));
+}
+function delClient(cid){
+  if(!confirm('حذف العميل نهائيًا؟'))return;
+  S.clients=S.clients.filter(function(x){return x.id!=cid});render();
+  w(sb.from('planner_clients').delete().eq('id',cid));
+}
+function setDays(cid){
+  var c=cl(cid),n=parseInt(document.getElementById('nd'+cid).value,10);if(!n||n<1)return;
+  c.days=n;c.tasks.forEach(function(t){if(t.d>n)t.d=n});render();
+  w(sb.from('planner_clients').update({days:n}).eq('id',cid));
+  w(sb.from('planner_tasks').update({d:n}).eq('client_id',cid).gt('d',n));
+}
+function addTask(cid,d){
+  var id='in'+cid+'_'+d,el=document.getElementById(id),t=el.value.trim();if(!t)return;
+  var task={id:crypto.randomUUID(),t:t,d:d,done:false};
+  cl(cid).tasks.push(task);S.focus=id;render();
+  w(sb.from('planner_tasks').insert({id:task.id,client_id:cid,t:t,d:d}));
+}
+function kd(e,cid,d){if(e.key==='Enter')addTask(cid,d)}
+function toggleOpen(cid){S.open[cid]=!S.open[cid];render()}
+
+// ---------- العرض ----------
+function taskRow(c,t,late){
+  return '<div class="t'+(t.done?' done':'')+'"><input type="checkbox" '+(t.done?'checked ':'')+'onchange="tog(\''+c.id+'\',\''+t.id+'\')"><span>'+esc(t.t)+(late?' <em class="tag l">متأخر · يوم '+t.d+'</em>':'')+'</span><button class="x" title="حذف" onclick="delTask(\''+c.id+'\',\''+t.id+'\')">×</button></div>';
+}
+function addRow(c,d){
+  return '<div class="row add"><input id="in'+c.id+'_'+d+'" placeholder="أضف مهمة ثم Enter" onkeydown="kd(event,\''+c.id+'\','+d+')"><button class="b" onclick="addTask(\''+c.id+'\','+d+')">+</button></div>';
+}
+function prog(c){var n=c.tasks.filter(function(t){return t.done}).length;return c.tasks.length?Math.round(n*100/c.tasks.length):0}
+function title(c){return '<strong>'+esc(c.name)+'</strong> <span class="mu">· '+esc(c.store)+'</span> <span class="tag">'+esc(c.svc)+'</span>'}
+function renderToday(){
+  if(!S.clients.length)return '<div class="card mu">ضيف أول عميل من تبويب العملاء.</div>';
+  return '<div class="grid">'+S.clients.map(function(c){
+    var cur=dayNo(c),p=prog(c);
+    if(cur<1)return '<div class="card"><div>'+title(c)+'</div><div class="mu">يبدأ '+fmt(new Date(c.start+'T00:00:00'))+'</div></div>';
+    var list=c.tasks.filter(function(t){return!t.done&&t.d<=cur}).sort(function(a,b){return a.d-b.d});
+    var over=cur>c.days?'<span class="tag l">تعدّى الميعاد المتفق عليه</span>':'';
+    var h='<div class="card"><div class="hd"><div>'+title(c)+'</div></div><div class="mu">يوم '+Math.min(cur,c.days)+' من '+c.days+' · '+p+'% '+over+'</div><div class="bar"><i style="width:'+p+'%"></i></div>';
+    h+=list.length?list.map(function(t){return taskRow(c,t,t.d<cur)}).join(''):'<div class="mu">مفيش مهام مفتوحة لليوم ده.</div>';
+    if(cur<=c.days)h+=addRow(c,cur);
+    return h+'</div>';
+  }).join('')+'</div>';
+}
+function renderClients(){
+  var form='<div class="card"><strong>عميل جديد (بعد الموافقة علي الـ Proposal)</strong><div class="frm">'+
+    '<input id="cn" placeholder="اسم العميل"><input id="cst" placeholder="اسم المتجر">'+
+    '<select id="csv">'+SV.map(function(v){return '<option>'+v+'</option>'}).join('')+'</select>'+
+    '<input id="cd" type="number" min="1" placeholder="عدد الأيام" style="width:auto"><input id="cs" type="date" value="'+iso(new Date())+'">'+
+    '<button class="b p" onclick="addClient()">إنشاء الخطة</button></div><div class="mu" style="margin-top:6px">الجمعة إجازة. بعد الإنشاء تكتب مهام كل يوم بنفسك.</div></div>';
+  return form+backup()+S.clients.map(function(c){
+    var p=prog(c),cur=dayNo(c),open=S.open[c.id];
+    var h='<div class="card"><div class="hd"><div>'+title(c)+'</div><span class="mu">التسليم: '+fmt(dateOf(c,c.days))+' · '+c.days+' يوم · '+p+'%</span></div><div class="bar"><i style="width:'+p+'%"></i></div>'+
+      '<div class="row"><button class="b" onclick="toggleOpen(\''+c.id+'\')">'+(open?'إخفاء الأيام':'عرض الأيام')+'</button>'+
+      '<span class="mu">عدد الأيام:</span><input id="nd'+c.id+'" type="number" min="1" value="'+c.days+'"><button class="b" onclick="setDays(\''+c.id+'\')">تعديل</button>'+
+      '<button class="b" onclick="delClient(\''+c.id+'\')">حذف العميل</button></div>';
+    if(open){
+      h+='<div class="grid" style="margin-top:12px">';
+      for(var d=1;d<=c.days;d++){
+        var ts=c.tasks.filter(function(t){return t.d==d});
+        h+='<div class="day'+(d==cur?' cur':'')+'"><h4>يوم '+d+' · '+fmt(dateOf(c,d))+(d==cur?' <span class="tag">النهاردة</span>':'')+'</h4>'+ts.map(function(t){return taskRow(c,t,false)}).join('')+addRow(c,d)+'</div>';
+      }
+      h+='</div>';
+    }
+    return h+'</div>';
+  }).join('');
+}
+function backup(){
+  return '<div class="card"><div class="row"><strong>نسخة احتياطية</strong><button class="b" onclick="exp()">تصدير</button><label class="b">استيراد من ملف<input type="file" accept=".json,application/json" style="display:none" onchange="impFile(this)"></label></div><div class="mu" style="margin-top:6px">الاستيراد بيضيف العملاء كنسخ جديدة (مناسب لنقل بيانات النسخة القديمة من localStorage).</div></div>';
+}
+function exp(){
+  var j=JSON.stringify({v:2,clients:S.clients});
+  try{var b=new Blob([j],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='aae-work-plan-'+iso(new Date())+'.json';document.body.appendChild(a);a.click();a.remove()}catch(e){}
+}
+async function impFile(inp){
+  var f=inp.files[0];if(!f)return;
+  try{
+    var o=JSON.parse(await f.text()),arr=Array.isArray(o)?o:o.clients;
+    if(!Array.isArray(arr))throw new Error('bad');
+    var cs=[],ts=[];
+    arr.forEach(function(c){
+      if(!c||!c.name||!c.days||!c.start)throw new Error('bad');
+      var id=crypto.randomUUID();
+      cs.push({id:id,name:c.name,store:c.store||'',svc:c.svc||'',days:c.days,start_date:c.start});
+      (c.tasks||[]).forEach(function(t){ts.push({id:crypto.randomUUID(),client_id:id,t:t.t,d:t.d,done:!!t.done})});
+    });
+    var r1=await sb.from('planner_clients').insert(cs);if(r1.error)throw r1.error;
+    if(ts.length){var r2=await sb.from('planner_tasks').insert(ts);if(r2.error)throw r2.error}
+    S.msg='تم استيراد '+cs.length+' عميل.';await load();
+  }catch(e){S.msg='الملف غير صالح أو فشل الاستيراد.';render()}
+  inp.value='';
+}
+function render(){
+  document.getElementById('tt').className=S.tab=='today'?'on':'';
+  document.getElementById('tc').className=S.tab=='clients'?'on':'';
+  var banner=S.msg?'<div class="card hd"><span>'+esc(S.msg)+'</span><button class="b" onclick="S.msg=\'\';render()">×</button></div>':'';
+  document.getElementById('app').innerHTML=banner+(S.tab=='today'?renderToday():renderClients());
+  if(S.focus){var e=document.getElementById(S.focus);if(e)e.focus();S.focus=null}
+}
+
+// ---------- تسجيل الدخول ----------
+function perr(m){document.getElementById('pe').textContent=m}
+async function login(){
+  var em=document.getElementById('em').value.trim(),pw=document.getElementById('pw').value;
+  if(!em||!pw){perr('اكتب الإيميل وكلمة المرور');return}
+  var r=await sb.auth.signInWithPassword({email:em,password:pw});
+  if(r.error){perr('بيانات الدخول غير صحيحة');return}
+  perr('');document.getElementById('pw').value='';start();
+}
+async function logout(){
+  await sb.auth.signOut();S.clients=[];S.msg='';
+  document.body.classList.add('locked');
+}
+function start(){document.body.classList.remove('locked');load()}
+(async function(){
+  document.getElementById('lg2').src=document.querySelector('.logo').src;
+  var r=await sb.auth.getSession();
+  if(r.data&&r.data.session)start();
+})();
+</script>
+</body>
+</html>
